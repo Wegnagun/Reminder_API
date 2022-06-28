@@ -4,6 +4,8 @@ from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+EVENT_CHOICES = []
+
 SECRET_KEY = 'django-insecure-599jxv#77%m6ms8^1+p_u3ybr416qg206raeb)1n$oa25h7yv_'
 
 DEBUG = True
