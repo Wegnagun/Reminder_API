@@ -8,7 +8,9 @@ User = get_user_model()
 class Event(models.Model):
     event_name = models.CharField(max_length=150)
     event_date = models.DateField()
-    event_type = models.CharField(choices=settings.EventChoices)
+    event_type = models.CharField(max_length=150,
+                                  choices=settings.EVENT_CHOICES,
+                                  default='Nothing')
     event_text = models.TextField()
     event_owner = models.ForeignKey(
         User,
