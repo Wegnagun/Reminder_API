@@ -6,17 +6,17 @@ User = get_user_model()
 
 
 class Event(models.Model):
-    event_name = models.CharField(max_length=150)
-    event_date = models.DateField()
-    event_type = models.CharField(max_length=150,
-                                  choices=settings.EVENT_CHOICES,
-                                  default='Nothing')
-    event_text = models.TextField()
-    event_owner = models.ForeignKey(
+    name = models.CharField(max_length=150)
+    date = models.DateField()
+    type = models.CharField(max_length=150,
+                            choices=settings.EVENT_CHOICES,
+                            blank=True)
+    text = models.TextField()
+    owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='event'
     )
 
     def __str__(self):
-        return self.event_name
+        return self.name
