@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
+from .validators import UniqueEventValidator
 
 from .models import Event
 
@@ -17,3 +18,6 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+        validators = [
+            UniqueEventValidator('name', 'date', 'text')
+        ]

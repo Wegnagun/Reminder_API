@@ -34,4 +34,4 @@
 
 ### Примеры запросов:
 
-`python manage.py runserver`
+`пример пример`

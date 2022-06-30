@@ -9,8 +9,7 @@ class Event(models.Model):
     name = models.CharField(max_length=150)
     date = models.DateField()
     type = models.CharField(max_length=150,
-                            choices=settings.EVENT_CHOICES,
-                            blank=True)
+                            choices=settings.EVENT_CHOICES)
     text = models.TextField()
     owner = models.ForeignKey(
         User,
