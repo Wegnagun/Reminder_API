@@ -21,7 +21,8 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    birthday = serializers.StringRelatedField(many=True, read_only=True)
+    birthday = serializers.StringRelatedField(
+        many=True, read_only=True, required=False)
 
     class Meta:
         model = User
