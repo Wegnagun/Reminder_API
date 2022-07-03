@@ -1,10 +1,12 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import EventViewSet
+from .views import BirthdayViewSet, EventViewSet, UserViewSet
 
 router = DefaultRouter()
-router.register('event', EventViewSet, basename='event')
+router.register('users', UserViewSet, basename='users')
+router.register('events', EventViewSet, basename='events')
+router.register('birthdays', BirthdayViewSet, basename='birthdays')
 
 urlpatterns = [
     path('v1/', include(router.urls)),

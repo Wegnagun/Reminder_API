@@ -1,22 +1,15 @@
-from django.db import models
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.db import models
 
-
-class Author(models.Model):
-    nickname = models.CharField(max_length=128)
-    first_name = models.CharField(max_length=128, blank=True)
-    last_name = models.CharField(max_length=128, blank=True)
-    password = models.CharField(max_length=128)
-
-    def __str__(self):
-        return f'{self.nickname}'
+User = get_user_model()
 
 
 class Birthday(models.Model):
     name = models.CharField(max_length=128)
     date = models.DateField()
     owner = models.ForeignKey(
-        Author,
+        User,
         on_delete=models.CASCADE,
         related_name='birthday'
     )
@@ -32,7 +25,7 @@ class Event(models.Model):
                             choices=settings.EVENT_CHOICES)
     text = models.TextField()
     owner = models.ForeignKey(
-        Author,
+        User,
         on_delete=models.CASCADE,
         related_name='event'
     )

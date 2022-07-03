@@ -1,19 +1,28 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework.relations import SlugRelatedField
 
-from .models import Event
+from .models import Birthday, Event
 
 User = get_user_model()
 
 
+class BirthdaySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Birthday
+        fields = ('name', 'date', 'owner')
+
+
 class EventSerializer(serializers.ModelSerializer):
-    # owner = SlugRelatedField(
-    #     read_only=True,
-    #     slug_field='owner',
-    #     default=serializers.CurrentUserDefault
-    # )
 
     class Meta:
         model = Event
         fields = '__all__'
+
+
+class UserSerializer(serializers.ModelSerializer):
+    birthday = serializers.StringRelatedField(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'birthday')
