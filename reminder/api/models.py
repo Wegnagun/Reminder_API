@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
-class Owner(models.Model):
+class Author(models.Model):
     nickname = models.CharField(max_length=128)
     first_name = models.CharField(max_length=128, blank=True)
     last_name = models.CharField(max_length=128, blank=True)
@@ -15,6 +15,14 @@ class Owner(models.Model):
 class Birthday(models.Model):
     name = models.CharField(max_length=128)
     date = models.DateField()
+    owner = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        related_name='birthday'
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class Event(models.Model):
@@ -24,7 +32,7 @@ class Event(models.Model):
                             choices=settings.EVENT_CHOICES)
     text = models.TextField()
     owner = models.ForeignKey(
-        Owner,
+        Author,
         on_delete=models.CASCADE,
         related_name='event'
     )
